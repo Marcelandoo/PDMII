@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.SeekBar;
 
 import androidx.activity.EdgeToEdge;
@@ -17,11 +19,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletionListener, View.OnClickListener, Runnable, SeekBar.OnSeekBarChangeListener {
+public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletionListener, OnClickListener, Runnable, SeekBar.OnSeekBarChangeListener {
     private Toolbar toolbar;
     private MediaPlayer mediaPlayer;
     private SeekBar seekBar;
     private Handler handler;
+    private Button b;
+    private boolean flag;
+    private int musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,11 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
         seekBar = findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(this);
         handler = new Handler();
+
+        b = findViewById(R.id.button2);
+        b.setOnClickListener(this);
+        flag = false;
+        musica = R.raw.forrodofarol_quincasmoreira;
     }
 
     @Override
@@ -49,12 +59,12 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
         }
         if(id == R.id.id001){
             if(mediaPlayer == null){
-                mediaPlayer= MediaPlayer.create(this, R.raw.forrodofarol_quincasmoreira);
+                mediaPlayer= MediaPlayer.create(this, musica);
                 mediaPlayer.setOnCompletionListener(this);
                 seekBar.setMax(mediaPlayer.getDuration());
                 handler.post(this);
                 mediaPlayer.start();
-            }else if(mediaPlayer.isPlaying()){
+            }else if(!mediaPlayer.isPlaying()){
                 mediaPlayer.start();
             }
         }
@@ -88,7 +98,17 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
 
     @Override
     public void onClick(View view) {
-
+        if(view == b){
+            if(view == b){
+                if(!flag){
+                    musica = R.raw.forrodofarol_quincasmoreira;
+                    flag = true;
+                }else {
+                    musica = R.raw.musica2;
+                    flag = true;
+                }
+            }
+        }
     }
 
     @Override
@@ -107,7 +127,7 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         if(mediaPlayer != null){
-            mediaPlayer.seekTo(seekBar.getProgress())
+            mediaPlayer.seekTo(seekBar.getProgress());
         }
     }
 
