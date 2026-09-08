@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/img_2547_2_"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -13,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tela 01"
+        android:textColor="#FFFFFF"
         android:textSize="34sp" />
 
     <Button
