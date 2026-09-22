@@ -19,7 +19,7 @@ public class tela03 extends AppCompatActivity implements Runnable, View.OnClickL
 
     private ViewPager2 viewpager;
     private ArrayList<Slide> lista;
-    private TextView textoScroll;
+    private TextView textoScroll, texto;
     private Button btn;
 
     @Override
@@ -36,16 +36,17 @@ public class tela03 extends AppCompatActivity implements Runnable, View.OnClickL
         textoScroll = findViewById(R.id.textView7);
         btn = findViewById(R.id.button2);
         btn.setOnClickListener(this);
+        texto = findViewById(R.id.textView7);
 
         viewpager = findViewById(R.id.viewpager);
         lista = new ArrayList<Slide>();
-        lista.add(new Slide("Jeff Buckley", R.drawable.jeff, "text"));
-        lista.add(new Slide("Jim Morrison", R.drawable.jim, "text"));
-        lista.add(new Slide("Kate Bush", R.drawable.kate, "text"));
-        lista.add(new Slide("Rosalía", R.drawable.rosalia, "text"));
-        lista.add(new Slide("Sufjan Stevens", R.drawable.sufjan, "text"));
+        lista.add(new Slide("Jeff Buckley", R.drawable.jeff, "text1"));
+        lista.add(new Slide("Jim Morrison", R.drawable.jim, "text2"));
+        lista.add(new Slide("Kate Bush", R.drawable.kate, "text3"));
+        lista.add(new Slide("Rosalía", R.drawable.rosalia, "text4"));
+        lista.add(new Slide("Sufjan Stevens", R.drawable.sufjan, "text5"));
 
-        SlideAdapter adapter = new SlideAdapter(lista);
+        SlideAdapter adapter = new SlideAdapter(lista, texto);
         viewpager.setAdapter(adapter);
 
         textoScroll.setText("A música é uma forma de expressão capaz de transmitir sentimentos, contar histórias e marcar diferentes gerações. Alguns artistas se destacam justamente por desenvolverem estilos próprios e deixarem uma influência duradoura na cultura. Entre eles estão Jeff Buckley, Jim Morrison, Kate Bush, Rosalía e Sufjan Stevens, artistas de épocas e estilos diferentes, mas unidos pela criatividade e pela capacidade de transformar suas experiências em música.\n" +
