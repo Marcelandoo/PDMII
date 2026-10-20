@@ -2,16 +2,23 @@ package com.example.projetopdmii;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
@@ -21,16 +28,49 @@ public class tela03 extends AppCompatActivity implements Runnable, View.OnClickL
     private ArrayList<Slide> lista;
     private TextView textoScroll, texto;
     private Button btn;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela03);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.iddrawer), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.filho3), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        toolbar = findViewById(R.id.toolbar3);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.iddrawer2);
+        navigationView = findViewById(R.id.navegatiion3);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            if (menuItem.getItemId() == R.id.idtela01) {
+                drawerLayout.closeDrawers();
+                startActivity(new Intent(tela03.this, TelaHome.class));
+                return true;
+            }
+            if (menuItem.getItemId() == R.id.idtela02) {
+                startActivity(new Intent(tela03.this, Tela02.class));
+                return true;
+            }
+            if (menuItem.getItemId() == R.id.idtela03) {
+                drawerLayout.closeDrawers();
+                return false;
+            }
+            return false;
+            }
         });
 
         textoScroll = findViewById(R.id.textView7);

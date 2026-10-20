@@ -1,5 +1,6 @@
 package com.example.projetopdmii;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,12 +14,17 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
@@ -35,13 +41,16 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
     private CardView card1, card2, card3, card4, card5;
     private TextView textoMusicaSelecionada, textoMusicaTocada, placarTempoAtual, placarTempoRestante;
     private ImageView imgPreview, imgNext;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tela02);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.iddrawer), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.filho), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -86,8 +95,39 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
         //Metodo de toque
         imgNext.setOnClickListener(this);
 
-        placarTempoAtual = findViewById(R.id.textView3);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        placarTempoAtual = findViewById(R.
+                id.textView3);
         placarTempoRestante = findViewById(R.id.textView4);
+
+        drawerLayout = findViewById(R.id.iddrawer2);
+        navigationView = findViewById(R.id.navegation);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                if(menuItem.getItemId() == R.id.idtela01){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(Tela02.this, TelaHome.class));
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.idtela02){
+                    drawerLayout.closeDrawers();
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.idtela03){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(Tela02.this, tela03.class));
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public String formatarTempo(int tempo){
