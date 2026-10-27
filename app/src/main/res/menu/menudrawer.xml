@@ -13,4 +13,6 @@
         android:id="@+id/idtela03"
         android:icon="@drawable/slideshow_24px"
         android:title="Slides" />
+    <item android:title="Quiz" />
+    <item android:title="Sobre" />
 </menu>
