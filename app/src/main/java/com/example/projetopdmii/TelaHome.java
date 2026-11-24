@@ -47,15 +47,27 @@ public class TelaHome extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if(menuItem.getItemId() == R.id.idtela01){
                     drawerLayout.closeDrawers();
+                    return false;
                 }
-
                 if(menuItem.getItemId() == R.id.idtela02){
                     drawerLayout.closeDrawers();
                     startActivity(new Intent(TelaHome.this, Tela02.class));
+                    return true;
                 }
                 if(menuItem.getItemId() == R.id.idtela03){
                     drawerLayout.closeDrawers();
                     startActivity(new Intent(TelaHome.this, tela03.class));
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.quiz){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(TelaHome.this, quiz.class));
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.sobre){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(TelaHome.this, sobre.class));
+                    return true;
                 }
                 return false;
             }

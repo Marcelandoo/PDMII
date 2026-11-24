@@ -69,6 +69,16 @@ public class tela03 extends AppCompatActivity implements Runnable, View.OnClickL
                 drawerLayout.closeDrawers();
                 return false;
             }
+            if(menuItem.getItemId() == R.id.quiz){
+                drawerLayout.closeDrawers();
+                startActivity(new Intent(tela03.this, quiz.class));
+                return true;
+            }
+            if(menuItem.getItemId() == R.id.sobre){
+                drawerLayout.closeDrawers();
+                startActivity(new Intent(tela03.this, sobre.class));
+                return true;
+            }
             return false;
             }
         });

@@ -26,7 +26,24 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/oi" />
+            android:layout_margin="10dp"
+            android:text="@string/oi"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="O mais literál possível!"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="match_parent"
+            android:layout_height="237dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/bot" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

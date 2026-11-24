@@ -118,11 +118,21 @@ public class Tela02 extends AppCompatActivity implements MediaPlayer.OnCompletio
                 }
                 if(menuItem.getItemId() == R.id.idtela02){
                     drawerLayout.closeDrawers();
-                    return true;
+                    return false;
                 }
                 if(menuItem.getItemId() == R.id.idtela03){
                     drawerLayout.closeDrawers();
                     startActivity(new Intent(Tela02.this, tela03.class));
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.quiz){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(Tela02.this, quiz.class));
+                    return true;
+                }
+                if(menuItem.getItemId() == R.id.sobre){
+                    drawerLayout.closeDrawers();
+                    startActivity(new Intent(Tela02.this, sobre.class));
                     return true;
                 }
                 return false;

@@ -14,9 +14,11 @@
         android:icon="@drawable/slideshow_24px"
         android:title="Slides" />
     <item
+        android:id="@+id/quiz"
         android:icon="@drawable/sobre"
         android:title="Quiz" />
     <item
+        android:id="@+id/sobre"
         android:icon="@drawable/quiz"
         android:title="Sobre" />
 </menu>
